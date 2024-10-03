@@ -3,17 +3,137 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="416.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+      <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="644.0" prefWidth="414.0">
+              <children>
+                  <!-- Header -->
+                  <TextField alignment="TOP_CENTER" cacheShape="false" centerShape="false" editable="false" focusTraversable="false" layoutX="121.0" layoutY="40.0" prefHeight="39.0" prefWidth="173.0" style="-fx-background-color: transparent; -fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="PlanifAI" />
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="416.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="644.0" prefWidth="414.0">
-         <children>
-            <TextField alignment="TOP_CENTER" cacheShape="false" centerShape="false" editable="false" focusTraversable="false" layoutX="121.0" layoutY="40.0" prefHeight="39.0" prefWidth="173.0" scaleShape="false" style="-fx-background-color: 0000;" text="PLANIFAI" />
-            <Button layoutX="41.0" layoutY="112.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" text="Button" />
-            <Button layoutX="41.0" layoutY="170.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" text="Button" />
-            <Button layoutX="40.0" layoutY="227.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" text="Button" />
-            <Button layoutX="40.0" layoutY="286.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" text="Button" />
-            <Button layoutX="41.0" layoutY="347.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" text="Button" />
-         </children></AnchorPane>
-  </content>
-</ScrollPane>
+                  <!-- Settings Icon -->
+                  <Button layoutX="360.0" layoutY="45.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 15; -fx-background-color: transparent; -fx-border-color: transparent;">
+                      <graphic>
+                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@settings-icon.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+
+                  <!-- Days of the Week -->
+                  <!-- Monday -->
+                  <Button layoutX="41.0" layoutY="112.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" style="-fx-background-color: #F4A261; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-weight: bold;">
+                      <graphic>
+                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <Label text="Mon" style="-fx-background-color: #2A9D8F; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 8px; -fx-border-radius: 5px;" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label text="+" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@bell-icon.png" />
+                                  </image>
+                              </ImageView>
+                          </HBox>
+                      </graphic>
+                  </Button>
+
+                  <!-- Tuesday -->
+                  <Button layoutX="41.0" layoutY="170.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" style="-fx-background-color: #F4A261; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-weight: bold;">
+                      <graphic>
+                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <Label text="Tue" style="-fx-background-color: #2A9D8F; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 8px; -fx-border-radius: 5px;" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label text="+" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@bell-icon.png" />
+                                  </image>
+                              </ImageView>
+                          </HBox>
+                      </graphic>
+                  </Button>
+
+                  <!-- Wednesday -->
+                  <Button layoutX="41.0" layoutY="227.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" style="-fx-background-color: #F4A261; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-weight: bold;">
+                      <graphic>
+                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <Label text="Wed" style="-fx-background-color: #2A9D8F; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 8px; -fx-border-radius: 5px;" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label text="+" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@bell-icon.png" />
+                                  </image>
+                              </ImageView>
+                          </HBox>
+                      </graphic>
+                  </Button>
+
+                  <!-- Thursday -->
+                  <Button layoutX="41.0" layoutY="286.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" style="-fx-background-color: #F4A261; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-weight: bold;">
+                      <graphic>
+                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <Label text="Thu" style="-fx-background-color: #2A9D8F; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 8px; -fx-border-radius: 5px;" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label text="+" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@bell-icon.png" />
+                                  </image>
+                              </ImageView>
+                          </HBox>
+                      </graphic>
+                  </Button>
+
+                  <!-- Friday -->
+                  <Button layoutX="41.0" layoutY="347.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" style="-fx-background-color: #F4A261; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-weight: bold;">
+                      <graphic>
+                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <Label text="Fri" style="-fx-background-color: #2A9D8F; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 8px; -fx-border-radius: 5px;" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label text="+" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@bell-icon.png" />
+                                  </image>
+                              </ImageView>
+                          </HBox>
+                      </graphic>
+                  </Button>
+
+                  <!-- Saturday -->
+                  <Button layoutX="41.0" layoutY="407.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" style="-fx-background-color: #F4A261; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-weight: bold;">
+                      <graphic>
+                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <Label text="Sat" style="-fx-background-color: #2A9D8F; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 8px; -fx-border-radius: 5px;" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label text="+" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@bell-icon.png" />
+                                  </image>
+                              </ImageView>
+                          </HBox>
+                      </graphic>
+                  </Button>
+
+                  <!-- Sunday -->
+                  <Button layoutX="41.0" layoutY="467.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="334.0" style="-fx-background-color: #F4A261; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-weight: bold;">
+                      <graphic>
+                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <Label text="Sun" style="-fx-background-color: #2A9D8F; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 8px; -fx-border-radius: 5px;" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label text="+" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@bell-icon.png" />
+                                  </image>
+                              </ImageView>
+                          </HBox>
+                      </graphic>
+                  </Button>
+              </children>
+          </AnchorPane>
+      </content>
+  </ScrollPane>
