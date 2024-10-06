@@ -68,7 +68,7 @@ public class ReminderPage {
         JButton dismissButton = new JButton("Dismiss");
         dismissButton.setFont(new Font("Arial", Font.BOLD, 16));
         dismissButton.setBackground(new Color(255, 178, 45)); // Orange background for button
-        dismissButton.setForeground(Color.WHITE);
+        dismissButton.setForeground(Color.BLACK);
         dismissButton.setBorder(BorderFactory.createEmptyBorder());
         dismissButton.setPreferredSize(new Dimension(100, 50));
 
