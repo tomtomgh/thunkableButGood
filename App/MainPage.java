@@ -1,7 +1,7 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class MainPage {
 
@@ -63,6 +63,15 @@ public class MainPage {
             dayPanel.setBackground(new Color(255, 255, 255));  // Panel color for each row
 
             daysPanel.add(dayPanel);
+
+             // action listener for reminder button, (just to test)
+             reminderButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
+                    cl.show(mainPanelContainer, "reminderPage");  // Switch to the reminderPage
+                }
+            });
         }
 
         mainPanel.add(daysPanel, BorderLayout.CENTER);
