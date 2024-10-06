@@ -19,12 +19,14 @@ public class PlanifAIApp {
         DayViewPage dayViewPage = new DayViewPage(mainPanel, null);
         AddEventPage addEventPage = new AddEventPage(mainPanel,null);
         ReminderPage reminderPage = new ReminderPage(mainPanel);
+        //SuggestionsList suggestionsList = new SuggestionsList(mainPanel);
 
         // Add all screens to the main panel
         mainPanel.add(planifAIPage.getMainPanel(), "MainPage");
         mainPanel.add(dayViewPage.getDayViewPanel(), "DayViewPage");
         mainPanel.add(addEventPage.getAddEventPanel(), "AddEventPage");
         mainPanel.add(reminderPage.getReminderPanel(), "reminderPage");
+       // mainPanel.add(suggestionsList.getSuggestionsListPanel(), "suggestionsList");
 
         // Display the MainPage initially
         CardLayout cl = (CardLayout) mainPanel.getLayout();
