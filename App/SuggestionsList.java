@@ -9,10 +9,10 @@ public class SuggestionsList {
 
     private JPanel suggestionsListPanel;
 
-    public SuggestionsList(JPanel mainPanelContainer, String eventTitle) {
+    public SuggestionsList(JPanel mainPanelContainer, String eventTitle, String selectedDay) {
         suggestionsListPanel = new JPanel(new BorderLayout());
         suggestionsListPanel.setBackground(Color.WHITE);
-        
+
         // Title label
         JLabel titleLabel = new JLabel("Friend Suggestions for: " + eventTitle, SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -34,7 +34,8 @@ public class SuggestionsList {
         // Action listener to return to AddEventPage
         backButton.addActionListener(e -> {
             CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
-            cl.show(mainPanelContainer, "AddEventPage");  // Reuse the same AddEventPage
+            // Use the unique card name for AddEventPage
+            cl.show(mainPanelContainer, "AddEventPage-" + selectedDay);  // Reuse the same AddEventPage
         });
 
         suggestionsListPanel.add(backButton, BorderLayout.SOUTH);
