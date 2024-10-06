@@ -16,11 +16,13 @@ public class DayViewPage {
         addEventButton.setFont(new Font("Arial", Font.BOLD, 16));
         addEventButton.setPreferredSize(new Dimension(400, 50));
 
-        // Action Listener for adding an event
+        // Action Listener for adding an event (Leads to AddEventPage)
         addEventButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(dayViewPanel, "Event added for the day!");
+                // Switch to AddEventPage when Add Event button is clicked
+                CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
+                cl.show(mainPanelContainer, "AddEventPage");  // Switch to AddEventPage
             }
         });
         dayViewPanel.add(addEventButton, BorderLayout.NORTH);

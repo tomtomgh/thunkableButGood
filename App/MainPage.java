@@ -11,7 +11,6 @@ public class MainPage {
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setBackground(new Color(169, 169, 255));  // Set background color
-      
 
         // Title label
         JLabel titleLabel = new JLabel("PlanifAI", SwingConstants.CENTER);
@@ -31,7 +30,7 @@ public class MainPage {
             JPanel dayPanel = new JPanel(new BorderLayout());
 
             // "+" Button to add an event
-            JButton addButton = new JButton(new ImageIcon("plusicon.png"));
+            JButton addButton = new JButton("+");
             addButton.setPreferredSize(new Dimension(50, 50));
             addButton.setBackground(new Color(255, 178, 45));  // Yellowish color
             addButton.setForeground(Color.WHITE);
@@ -54,7 +53,7 @@ public class MainPage {
             dayLabel.setBackground(new Color(128, 158, 255));  // Set color for day labels
 
             // Notification Button (Bell icon)
-            JButton reminderButton = new JButton(new ImageIcon("bellicon.png"));
+            JButton reminderButton = new JButton(new ImageIcon("bell_icon.png"));
             reminderButton.setPreferredSize(new Dimension(50, 50));
             reminderButton.setBorder(BorderFactory.createEmptyBorder());
 
