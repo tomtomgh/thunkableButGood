@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AddEventPage {
@@ -148,6 +149,15 @@ public class AddEventPage {
                 String eventTitle = eventTitleField.getText();
                 String eventDescription = eventDescriptionArea.getText();
 
+                // Calculate reminder time
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(fromTime);
+                cal.add(Calendar.MINUTE, -30);
+                Date reminderTime = cal.getTime();
+                // Save event with reminder time
+                SimpleDateFormat reminderFormat = new SimpleDateFormat("hh:mm a");
+                String reminderTimeStr = reminderFormat.format(reminderTime);
+                
                 if (selectedDate != null && !eventTitle.isEmpty()) {
                     String date = dateFormat.format(selectedDate);
                     String from = timeFormat.format(fromTime);
@@ -155,7 +165,7 @@ public class AddEventPage {
 
                     // Write the event details to a file
                     try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.txt", true))) {
-                        writer.write(eventTitle + "," + from + "," + to + "," + date);
+                        writer.write(eventTitle + "," + from + "," + to + "," + date + "," + reminderTimeStr);
                         writer.newLine();
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -172,6 +182,7 @@ public class AddEventPage {
                 // Go back to DayViewPage when event is created
                 CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
                 cl.show(mainPanelContainer, "DayViewPage");
+
             }
         });
 
