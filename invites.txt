@@ -1,0 +1,2 @@
+Event: monday thingy -> Name: gabi, Email: gabiboy@gmail.com
+Event: brevdcw -> Name: tre, Email: tree@gmail.com
