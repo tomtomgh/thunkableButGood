@@ -69,7 +69,7 @@ public class MainPage {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
-                    cl.show(mainPanelContainer, "reminderPage");  // Switch to the reminderPage
+                    cl.show(mainPanelContainer, "ReminderPage");  // Switch to the reminderPage
                 }
             });
         }
