@@ -1,7 +1,7 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class MainPage {
 
@@ -72,7 +72,7 @@ public class MainPage {
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("Reminder button for " + day + " clicked.");
                     CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
-                    cl.show(mainPanelContainer, "reminderPage");
+                    cl.show(mainPanelContainer, "ReminderPage");
                 }
             });
 

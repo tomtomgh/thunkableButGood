@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class ReminderPage {
 
-    private JPanel reminderPanel;
+    private static JPanel reminderPanel;
 
     public ReminderPage(JPanel mainPanelContainer) {
         reminderPanel = new JPanel();
@@ -85,5 +85,16 @@ public class ReminderPage {
 
     public JPanel getReminderPanel() {
         return reminderPanel;
+    }
+
+    public static void updateReminderLabels(String title, String time) {
+        JPanel centerPanel = (JPanel) reminderPanel.getComponent(1);
+        JPanel reminderContentPanel = (JPanel) centerPanel.getComponent(1);
+    
+        JLabel timeLabel = (JLabel) reminderContentPanel.getComponent(0);
+        JLabel activityLabel = (JLabel) reminderContentPanel.getComponent(1);
+    
+        timeLabel.setText("Reminder: " + time);
+        activityLabel.setText(title);
     }
 }

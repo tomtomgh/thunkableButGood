@@ -1,3 +1,4 @@
+import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,24 +6,24 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AddEventPage {
 
     private JPanel addEventPanel;
     private String selectedDay;  // The selected day (e.g., "Monday")
     private ArrayList<String> friendsList;  // Store the friends invited
-    private JTextField eventTitleField;
-    private JPanel mainPanelContainer;
 
     public AddEventPage(JPanel mainPanelContainer, String selectedDay) {
         this.selectedDay = selectedDay;  // Store the selected day
-        this.mainPanelContainer = mainPanelContainer;
         this.friendsList = new ArrayList<>();  // Initialize the list of friends invited
 
         addEventPanel = new JPanel(new GridBagLayout());  // Use GridBagLayout for flexible positioning
         addEventPanel.setBackground(Color.WHITE);
-
+        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);  // Set padding between components
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -62,33 +63,67 @@ public class AddEventPage {
         gbc.gridwidth = 1;
         addEventPanel.add(eventTitleLabel, gbc);
 
-        eventTitleField = new JTextField(20);
+        JTextField eventTitleField = new JTextField(20);
         gbc.gridx = 1;
         gbc.gridy = 2;
         addEventPanel.add(eventTitleField, gbc);
+
+        // From Time Spinner
+        JLabel fromLabel = new JLabel("From:");
+        fromLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        addEventPanel.add(fromLabel, gbc);
+
+        SpinnerDateModel fromTimeModel = new SpinnerDateModel();
+        JSpinner fromTimeSpinner = new JSpinner(fromTimeModel);
+        JSpinner.DateEditor timeEditorFrom = new JSpinner.DateEditor(fromTimeSpinner, "hh:mm a");
+        fromTimeSpinner.setEditor(timeEditorFrom);
+
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        addEventPanel.add(fromTimeSpinner, gbc);
+
+        // To Time Spinner
+        JLabel toLabel = new JLabel("To:");
+        toLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        addEventPanel.add(toLabel, gbc);
+
+        SpinnerDateModel toTimeModel = new SpinnerDateModel();
+        JSpinner toTimeSpinner = new JSpinner(toTimeModel);
+        JSpinner.DateEditor timeEditorTo = new JSpinner.DateEditor(toTimeSpinner, "hh:mm a");
+        toTimeSpinner.setEditor(timeEditorTo);
+
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        addEventPanel.add(toTimeSpinner, gbc);
 
         // Friend's Name Input Field
         JLabel friendNameLabel = new JLabel("Friend's Name:");
         friendNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 5;
         addEventPanel.add(friendNameLabel, gbc);
 
         JTextField friendNameField = new JTextField(20);
         gbc.gridx = 1;
-        gbc.gridy = 3;
+        gbc.gridy = 5;
         addEventPanel.add(friendNameField, gbc);
 
         // Friend's Email Input Field
         JLabel friendEmailLabel = new JLabel("Friend's Email:");
         friendEmailLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 6;
         addEventPanel.add(friendEmailLabel, gbc);
 
         JTextField friendEmailField = new JTextField(20);
         gbc.gridx = 1;
-        gbc.gridy = 4;
+        gbc.gridy = 6;
         addEventPanel.add(friendEmailField, gbc);
 
         // Add Friend Button
@@ -98,7 +133,7 @@ public class AddEventPage {
         addFriendButton.setFont(new Font("Arial", Font.BOLD, 16));
 
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 7;
         gbc.gridwidth = 2;
         addEventPanel.add(addFriendButton, gbc);
 
@@ -107,7 +142,7 @@ public class AddEventPage {
         friendsAddedArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(friendsAddedArea);
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 8;
         gbc.gridwidth = 2;
         addEventPanel.add(scrollPane, gbc);
 
@@ -117,24 +152,14 @@ public class AddEventPage {
             public void actionPerformed(ActionEvent e) {
                 String friendName = friendNameField.getText();
                 String friendEmail = friendEmailField.getText();
-                String eventTitle = eventTitleField.getText();
-                if (!friendName.isEmpty() && !friendEmail.isEmpty() && !eventTitle.isEmpty()) {
+                if (!friendName.isEmpty() && !friendEmail.isEmpty()) {
                     String friendInfo = friendName + " (" + friendEmail + ")";
                     friendsList.add(friendInfo);  // Add friend to the list
                     friendsAddedArea.append(friendInfo + "\n");
                     friendNameField.setText("");  // Clear input fields
                     friendEmailField.setText("");
-
-                    // Save the data to the user_activities.txt file
-                    try (BufferedWriter writer = new BufferedWriter(new FileWriter("user_activities.txt", true))) {
-                        writer.write(friendName + "," + friendEmail + "," + eventTitle);  // Save friend info and activity
-                        writer.newLine();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-
                 } else {
-                    JOptionPane.showMessageDialog(addEventPanel, "Please fill all fields!");
+                    JOptionPane.showMessageDialog(addEventPanel, "Please fill both fields!");
                 }
             }
         });
@@ -142,7 +167,7 @@ public class AddEventPage {
         // Suggestions Button (Purple with Fancy Style)
         JButton suggestionsButton = new JButton("Suggestions");
         suggestionsButton.setBackground(new Color(138, 43, 226));  // Purple background
-        suggestionsButton.setForeground(Color.WHITE);  // White text
+        suggestionsButton.setForeground(new Color(138, 43, 226));  // White text
         suggestionsButton.setFont(new Font("Arial", Font.BOLD, 16));
         suggestionsButton.setPreferredSize(new Dimension(150, 50));  // Set button size
 
@@ -150,25 +175,12 @@ public class AddEventPage {
         suggestionsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Get the current event title
-                String eventTitle = getEventTitle();
-                if (eventTitle == null || eventTitle.isEmpty()) {
-                    JOptionPane.showMessageDialog(addEventPanel, "Please enter the event title first.");
-                    return;
-                }
-
-                // Create the SuggestionsList page and pass the event title
-                SuggestionsList suggestionsList = new SuggestionsList(mainPanelContainer, eventTitle);
-                mainPanelContainer.add(suggestionsList.getSuggestionsListPanel(), "SuggestionsList");
-
-                // Switch to the SuggestionsList page
-                CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
-                cl.show(mainPanelContainer, "SuggestionsList");
+                JOptionPane.showMessageDialog(addEventPanel, "AI Friend Suggestions Coming Soon!");
             }
         });
 
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 9;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         addEventPanel.add(suggestionsButton, gbc);
@@ -183,16 +195,44 @@ public class AddEventPage {
         doneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Date fromTime = (Date) fromTimeSpinner.getValue();
+                Date toTime = (Date) toTimeSpinner.getValue();
+                SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+
                 String eventTitle = eventTitleField.getText();
+                String from = timeFormat.format(fromTime);
+                String to = timeFormat.format(toTime);
 
-                if (eventTitle.isEmpty()) {
-                    JOptionPane.showMessageDialog(addEventPanel, "Please enter the event title.");
-                    return;
+                // // Calculate reminder time
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(fromTime);
+                // cal.add(Calendar.MINUTE, -30); // -30 here means 30 mins before
+                // Date reminderTime = cal.getTime();
+                // // Save event with reminder time
+                // SimpleDateFormat reminderFormat = new SimpleDateFormat("hh:mm a");
+                // String reminderTimeStr = reminderFormat.format(reminderTime);
+                
+                // Calculate reminder time with default offset
+                int reminderOffset = -30; // Default 30 minutes before
+                // Check for keywords and adjust reminder time
+                if (eventTitle.contains("gym")) {
+                    reminderOffset = -60; // 1 hour before for gym
+                } else if (eventTitle.contains("airport") || eventTitle.contains("airplane") || eventTitle.contains("flight")) {
+                    reminderOffset = -240; // 4 hours before for airport/flight
+                } else if (eventTitle.contains("groceries")) {
+                    reminderOffset = -5; // 5 minutes before for groceries
                 }
+                int hourbefore = reminderOffset/60;
+                int minutebefore = reminderOffset%60;
+                cal.add(Calendar.HOUR, hourbefore);
+                cal.add(Calendar.MINUTE, minutebefore);
+                Date reminderTime = cal.getTime();
+                SimpleDateFormat reminderFormat = new SimpleDateFormat("hh:mm a");
+                String reminderTimeStr = reminderFormat.format(reminderTime); 
 
-                // Store the event along with friends in the events.txt file
+                // Store the event along with friends in the same file
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.txt", true))) {
-                    writer.write(eventTitle + "," + selectedDay);
+                    writer.write(eventTitle + "," + from + "," + to + "," + selectedDay + "," + reminderTimeStr);
                     if (!friendsList.isEmpty()) {
                         writer.write("," + String.join(" | ", friendsList));  // Add invited friends to the same line
                     }
@@ -202,7 +242,8 @@ public class AddEventPage {
                 }
 
                 JOptionPane.showMessageDialog(addEventPanel,
-                    "Event Created: \nTitle: " + eventTitle + " on " + selectedDay);
+                    "Event Created: \nTitle: " + eventTitle +
+                    "\nFrom: " + from + " to " + to + " on " + selectedDay);
 
                 // Go back to DayViewPage when event is created
                 CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
@@ -211,16 +252,12 @@ public class AddEventPage {
         });
 
         gbc.gridx = 0;
-        gbc.gridy = 8;
+        gbc.gridy = 10;
         gbc.gridwidth = 2;
         addEventPanel.add(doneButton, gbc);
     }
 
     public JPanel getAddEventPanel() {
         return addEventPanel;
-    }
-
-    public String getEventTitle() {
-        return eventTitleField.getText();  // Return the current event title
     }
 }
