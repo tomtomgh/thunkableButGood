@@ -1,3 +1,7 @@
 tom,ttom@gmail.com,pool
 tom,ttom@gmail.com,pool
 bob,maybethebuilder@gmail.com,swimming
+thomas,thomas@gmail.com,swimming
+
+louis,louislecon@gmail.com,walk
+anna,anna@gmail.com,walk

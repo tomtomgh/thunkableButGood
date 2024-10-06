@@ -226,6 +226,8 @@ public class AddEventPage {
         doneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                
                 String eventTitle = eventTitleField.getText();
 
                 if (eventTitle.isEmpty()) {

@@ -122,10 +122,16 @@ public class SuggestionsList {
         // Map for "pool"
         Set<String> poolRelated = new HashSet<>(Arrays.asList("pool", "swimming", "swimming pool", "swim"));
         relatedKeywords.put("pool", poolRelated);
+        Set<String> swimmingRelated = new HashSet<>(Arrays.asList("pool", "swimming", "swimming pool", "swim"));
+        relatedKeywords.put("swimming", swimmingRelated);
 
         // Map for "hike"
         Set<String> hikeRelated = new HashSet<>(Arrays.asList("hike", "walk", "run", "camping"));
         relatedKeywords.put("hike", hikeRelated);
+        Set<String> hikingRelated = new HashSet<>(Arrays.asList("hike", "walk", "run", "camping"));
+        relatedKeywords.put("hiking", hikingRelated);
+        Set<String> walkRelated = new HashSet<>(Arrays.asList("hike", "walk", "run", "camping"));
+        relatedKeywords.put("walk", walkRelated);
 
         // Add more mappings as needed
 
