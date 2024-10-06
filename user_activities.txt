@@ -3,3 +3,5 @@ tom,ttom@gmail.com,pool
 bob,maybethebuilder@gmail.com,swimming
 thomas,thomas@gmail.com,swimming
 louis,louislecon@gmail.com,walk
+brother,broro@gmail.com,swimming
+alex,emoti@gmail.com,swimming
