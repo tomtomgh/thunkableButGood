@@ -7,3 +7,4 @@ monday thingy,04:11 pm,06:11 pm,Monday
 brevdcw,04:12 pm,04:12 pm,Monday
 beach holliday,04:40 pm,11:40 pm,Monday,bro (broski@gmail.com)
 ,05:23 pm,05:23 pm,Monday
+remindercheck,06:42 PM,07:42 PM,Monday,06:12 PM

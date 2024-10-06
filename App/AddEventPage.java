@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AddEventPage {
@@ -202,9 +203,18 @@ public class AddEventPage {
                 String from = timeFormat.format(fromTime);
                 String to = timeFormat.format(toTime);
 
+                // Calculate reminder time
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(fromTime);
+                cal.add(Calendar.MINUTE, -30); // -30 here means 30 mins before
+                Date reminderTime = cal.getTime();
+                // Save event with reminder time
+                SimpleDateFormat reminderFormat = new SimpleDateFormat("hh:mm a");
+                String reminderTimeStr = reminderFormat.format(reminderTime);
+
                 // Store the event along with friends in the same file
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.txt", true))) {
-                    writer.write(eventTitle + "," + from + "," + to + "," + selectedDay);
+                    writer.write(eventTitle + "," + from + "," + to + "," + selectedDay + "," + reminderTimeStr);
                     if (!friendsList.isEmpty()) {
                         writer.write("," + String.join(" | ", friendsList));  // Add invited friends to the same line
                     }
