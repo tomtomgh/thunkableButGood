@@ -203,14 +203,32 @@ public class AddEventPage {
                 String from = timeFormat.format(fromTime);
                 String to = timeFormat.format(toTime);
 
-                // Calculate reminder time
+                // // Calculate reminder time
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(fromTime);
-                cal.add(Calendar.MINUTE, -30); // -30 here means 30 mins before
+                // cal.add(Calendar.MINUTE, -30); // -30 here means 30 mins before
+                // Date reminderTime = cal.getTime();
+                // // Save event with reminder time
+                // SimpleDateFormat reminderFormat = new SimpleDateFormat("hh:mm a");
+                // String reminderTimeStr = reminderFormat.format(reminderTime);
+                
+                // Calculate reminder time with default offset
+                int reminderOffset = -30; // Default 30 minutes before
+                // Check for keywords and adjust reminder time
+                if (eventTitle.contains("gym")) {
+                    reminderOffset = -60; // 1 hour before for gym
+                } else if (eventTitle.contains("airport") || eventTitle.contains("airplane") || eventTitle.contains("flight")) {
+                    reminderOffset = -240; // 4 hours before for airport/flight
+                } else if (eventTitle.contains("groceries")) {
+                    reminderOffset = -5; // 5 minutes before for groceries
+                }
+                int hourbefore = reminderOffset/60;
+                int minutebefore = reminderOffset%60;
+                cal.add(Calendar.HOUR, hourbefore);
+                cal.add(Calendar.MINUTE, minutebefore);
                 Date reminderTime = cal.getTime();
-                // Save event with reminder time
                 SimpleDateFormat reminderFormat = new SimpleDateFormat("hh:mm a");
-                String reminderTimeStr = reminderFormat.format(reminderTime);
+                String reminderTimeStr = reminderFormat.format(reminderTime); 
 
                 // Store the event along with friends in the same file
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.txt", true))) {
