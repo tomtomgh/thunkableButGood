@@ -16,3 +16,4 @@ running,06:30 am,07:30 am,Sunday,jack (jackrunner@gmail.com)
 swimming,04:00 pm,05:00 pm,Friday,jane (jane@swimmer.com)
 camping,02:00 pm,04:00 pm,Saturday,sam (sam@camping.com)
 walk,10:35 pm,10:35 pm,Tuesday,anna (anna@gmail.com)
+groceries,10:45 PM,10:45 PM,Monday,10:40 PM
