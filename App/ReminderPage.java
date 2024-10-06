@@ -1,7 +1,7 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class ReminderPage {
 
@@ -22,7 +22,7 @@ public class ReminderPage {
         planifAILabel.setFont(new Font("Arial", Font.BOLD, 20));
         planifAILabel.setOpaque(true);
         planifAILabel.setBackground(new Color(104, 159, 255)); // Light blue background
-        planifAILabel.setForeground(Color.WHITE);
+        planifAILabel.setForeground(Color.BLACK);
         planifAILabel.setPreferredSize(new Dimension(300, 50));
         titlePanel.add(planifAILabel);
 
@@ -53,12 +53,12 @@ public class ReminderPage {
 
         JLabel timeLabel = new JLabel("In 30 mins", SwingConstants.CENTER);
         timeLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        timeLabel.setForeground(Color.WHITE);
+        timeLabel.setForeground(Color.BLACK);
         reminderContentPanel.add(timeLabel);
 
         JLabel activityLabel = new JLabel("Gym Training 17:00 - 18:30", SwingConstants.CENTER);
         activityLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        activityLabel.setForeground(Color.WHITE);
+        activityLabel.setForeground(Color.BLACK);
         reminderContentPanel.add(activityLabel);
 
         centerPanel.add(reminderContentPanel, BorderLayout.CENTER);
