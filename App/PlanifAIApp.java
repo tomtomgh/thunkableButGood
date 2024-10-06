@@ -1,10 +1,13 @@
-
 import java.awt.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,7 +19,13 @@ public class PlanifAIApp {
     private static CardLayout cardLayout;
     private static JPanel mainPanelContainer;
 
+    private static Instant startTime;  // Declare start time
+    private static Instant endTime;    // Declare end time
+
     public static void main(String[] args) {
+        // Record the start time when the app opens
+        startTime = Instant.now();
+
         JFrame frame = new JFrame("PlanifAI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 700);  
@@ -41,6 +50,43 @@ public class PlanifAIApp {
 
         // Start the reminder checker
         startReminderChecker();
+
+        // Add a WindowListener to capture when the application closes
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                // Record the end time when the app closes
+                endTime = Instant.now();
+                
+                // Calculate the elapsed time
+                Duration elapsedTime = Duration.between(startTime, endTime);
+                long elapsedSeconds = elapsedTime.getSeconds();
+                long minutes = elapsedSeconds / 60;
+                long seconds = elapsedSeconds % 60;
+
+                // Format the elapsed time as a string
+                String elapsedTimeStr = "Elapsed time: " + minutes + " minutes and " + seconds + " seconds.";
+
+                // Display or log the elapsed time
+                System.out.println(elapsedTimeStr);
+                
+                // Save the elapsed time to timer.txt
+                saveElapsedTimeToFile(elapsedTimeStr);
+
+                // Exit the application
+                System.exit(0);
+            }
+        });
+    }
+
+    private static void saveElapsedTimeToFile(String elapsedTime) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("timer.txt", true))) {
+            // Append the elapsed time to timer.txt
+            writer.write(elapsedTime);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void startReminderChecker() {
@@ -63,17 +109,17 @@ public class PlanifAIApp {
             while ((line = reader.readLine()) != null) {
                 String[] eventDetails = line.split(",");
                 if (eventDetails.length < 6) continue;
-                
+
                 String reminderTimeStr = eventDetails[4];
                 String eventTitle = eventDetails[0];
                 String eventTime = eventDetails[1] + " - " + eventDetails[2];
-                
+
                 Date reminderTime = timeFormat.parse(reminderTimeStr);
-                
+
                 if (currentTime.after(reminderTime) || currentTime.getTime() - reminderTime.getTime() < 60000) {
                     updateReminderPage(eventTitle, eventTime);
                     cl.show(mainPanelContainer, "ReminderPage");
-                    
+
                     // Optionally, here you could update the file or data structure to mark this event as reminded
                 }
             }
