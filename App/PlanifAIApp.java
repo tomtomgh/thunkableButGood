@@ -8,7 +8,7 @@ public class PlanifAIApp {
         JFrame frame = new JFrame("PlanifAI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 700);  // Size to simulate a mobile app
-        frame.setResizable(false);
+        //frame.setResizable(false);
 
         // Create a CardLayout to switch between the main, modification, and add event screens
         JPanel mainPanel = new JPanel(new CardLayout());
