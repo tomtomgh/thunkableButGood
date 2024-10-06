@@ -1,7 +1,5 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class PlanifAIApp {
 
@@ -18,10 +16,14 @@ public class PlanifAIApp {
         // Create the main page and modification screen panels
         MainPage planifAIPage = new MainPage(mainPanel);
         DayViewPage dayViewPage = new DayViewPage(mainPanel);
+        ReminderPage reminderPage = new ReminderPage(mainPanel);
+        AddEventPage addEventPage = new AddEventPage(mainPanel);
 
         // Add both screens to the main panel
         mainPanel.add(planifAIPage.getMainPanel(), "MainPage");
         mainPanel.add(dayViewPage.getDayViewPanel(), "DayViewPage");
+        mainPanel.add(reminderPage.getReminderPanel(), "reminderPage");
+        mainPanel.add(addEventPage.getAddEventPanel(), "addEventPage");
 
         // Show the frame
         frame.add(mainPanel);

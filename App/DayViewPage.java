@@ -1,7 +1,7 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class DayViewPage {
 
@@ -22,7 +22,7 @@ public class DayViewPage {
             public void actionPerformed(ActionEvent e) {
                 // Switch to AddEventPage when Add Event button is clicked
                 CardLayout cl = (CardLayout) mainPanelContainer.getLayout();
-                cl.show(mainPanelContainer, "AddEventPage");  // Switch to AddEventPage
+                cl.show(mainPanelContainer, "addEventPage");  // Switch to AddEventPage
             }
         });
         dayViewPanel.add(addEventButton, BorderLayout.NORTH);
